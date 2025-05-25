@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Mathematics and ICT Education - UCC</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wdth,wght@0,93,100..900;1,93,100..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0056b3; /* UCC Blue */
+            --secondary-color: #ffc107; /* Gold */
+            --dark-color: #343a40;
+            --light-color: #f8f9fa;
+            --accent-color: #28a745;
+            --text-color: #212529;
+            --text-light: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav__container img {
+            height: 60px;
+            width: auto;
+        }
+
+        .nav__menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav__menu li {
+            margin-left: 20px;
+        }
+
+        .nav__menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .nav__menu a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* Header */
+        header {
+            margin-top: 80px;
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(0,86,179,0.1) 0%, rgba(255,193,7,0.1) 100%);
+        }
+
+        .header__container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .header__left {
+            flex: 1;
+        }
+
+        .header__left h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-family: 'Noto Serif', serif;
+        }
+
+        .header__left p1 {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .header__right {
+            flex: 1;
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header__right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .header__right img.active {
+            opacity: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #004494;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 60px 0;
+        }
+
+        .categories__container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .categories_left {
+            flex: 1;
+        }
+
+        .categories_left h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .categories_left p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .categories__right {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .category {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .category h5 {
+            font-size: 1.2rem;
+            margin: 15px 0 10px;
+            color: var(--primary-color);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { color: var(--primary-color); }
+            50% { color: var(--secondary-color); }
+            100% { color: var(--primary-color); }
+        }
+
+        /* Fixed Download Button */
+        .fixed {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .fixed:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .main_container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .foter_container {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .foter_container p {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        .foter_container ul {
+            list-style: none;
+        }
+
+        .foter_container li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .foter_container a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .foter_container a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .fa-facebook-square, 
+        .fa-twitter-square,
+        .fa-linkedin-square,
+        .fa-google-plus-square,
+        .fa-youtube-square,
+        .fa-instagram,
+        .fa-envelope,
+        .fa-phone {
+            margin-left: 8px;
+            transition: var(--transition);
+        }
+
+        .foter_container a:hover i {
+            transform: scale(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header__container {
+                flex-direction: column;
+            }
+            
+            .categories__container {
+                flex-direction: column;
+            }
+            
+            .nav__menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header__right {
+                height: 300px;
+            }
+            
+            .categories__right {
+                grid-template-columns: 1fr;
+            }
+            
+            .fixed {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header__left h1 {
+                font-size: 2rem;
+            }
+            
+            .header__right {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav__container">
+            <a href="index.html"><img src="IMG-20241224-WA0007.jpg" alt="UCC Mathematics Department Logo"></a>
+            <Ul class="nav__menu">
+                <li><a href="peter.html" id="l1">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="course.html">Courses</a></li>
+                <li><a href="vvideo.html">Download</a></li>
+                <li><a href="#">Videos</a></li>
+                <li><a href="video.html">Pasco</a></li>
+            </Ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container header__container">
+            <div class="header__left">
+                <h1>Mathematics Department And ICT Education</h1>
+                <p1>
+                    The Department of Mathematics at University College Cork (UCC) has a long and rich history, rooted in the establishment of UCC itself. UCC was founded in 1845, originally as Queen's College Cork, and its early curriculum included a strong focus on mathematics and the sciences. Here's a brief history:
+                </p1>
+                <br>
+                <a href="coures.html" class="btn btn-primary">Get Started</a>
+            </div>
+
+            <div class="header__right">
+                <img src="IMG-20241202-WA0015.jpg" alt="UCC Mathematics Department" class="active">
+                <img src="IMG-20241210-WA0034.jpg" alt="Mathematics Classroom">
+                <img src="new ucc image.jpg" alt="Students Learning Math">
+                <img src="new ucc image.jpg" alt="Math Research">
+            </div>
+        </div>
+    </header>
+
+    <section class="categories">
+        <div class="container categories__container">
+            <div class="categories_left">
+                <h1>Program Categories</h1>
+                <p class="cate">Our department offers comprehensive programs designed to equip students with both theoretical knowledge and practical skills in mathematics and ICT education. Whether you're interested in pure mathematics or mathematics education, we have programs tailored to your career aspirations.</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="categories__right">
+                <article class="category">
+                    <span class="category__icon"><i class="uil uil-calculator-alt"></i></span>
+                    <h5>BSC Mathematics</h5>
+                    <p>Our Bachelor of Science in Mathematics program provides a strong foundation in mathematical theory and applications, preparing students for careers in research, finance, data science, and more.</p>
+                </article>
+                <article class="category">
+                    <span class="category__icon"><i class="uil uil-book-open"></i></span>
+                    <h5>BED Mathematics</h5>
+                    <p>The Bachelor of Education in Mathematics program combines mathematical content with pedagogical training, preparing graduates to teach mathematics at the secondary school level.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <div>
+        <a class="fixed" href=""><i class="uil uil-download-alt"></i> Download Resources</a>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="main_container">
+                <div class="foter_container">
+                    <ul>
+                        <p>About Us</p>
+                        <li>BSC MAT Department</li>
+                        <li>Mathematics Education Department</li>
+                        <li>Peterson.com</li>
+                        <li>Merbline Connect</li>
+                        <li>Geography And Regional Planning Department</li>
+                        <li>School Of Business</li>
+                        <li>Chemistry Department</li>
+                        <li>Education in UCC</li>
+                        <li>Student</li>
+                    </ul>
+                </div>
+                <div class="foter_container">
+                    <ul>
+                        <p>Contact Us</p>
+                        <li>Phone Number: +233599171020 <i class="fa fa-phone" aria-hidden="true"></i></li>
+                        <li>Email: <a href="mailto:asarepeter127@gmail.com">asarepeter127@gmail.com <i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                        <li>Address: UCC.edu.gh</li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li>&copy;2025 copyright-policy <a href="copyright-policy">Peterson.com</a> All rights reserved</li>
+                        <li>Economics</li>
+                        <li>Chemistry</li>
+                        <li>BSC Mathematics</li>
+                        <li>Business Courses</li>
+                    </ul>
+                </div>
+                <div class="foter_container">
+                    <ul>
+                        <p>Social Media Learning-Platform</p>
+                        <li><a href="">Facebook <i class="fa fa-facebook-square"></i></a></li>
+                        <li><a href="">Twitter <i class="fa fa-twitter-square"></i></a></li>
+                        <li><a href="">LinkedIn <i class="fa fa-linkedin-square"></i></a></li>
+                        <li><a href="">Google <i class="fa fa-google-plus-square"></i></a></li>
+                        <li><a href="">YouTube <i class="fa fa-youtube-square"></i></a></li>
+                        <li><a href="">Instagram <i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+                <div class="foter_container">
+                    <ul>
+                        <p><a href="#">University of Cape Coast</a></p>
+                        <li>E Learning-Platform</li>
+                        <li>Student Financial Aid</li>
+                        <li>Student portal</li>
+                        <li>Student Trust Fund</li>
+                        <li>UCC Service information</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+
+
+    // Image Slideshow
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('.header__right img');
+        let currentImage = 0;
+        
+        // Show first image
+        images[currentImage].classList.add('active');
+        
+        // Change image every 5 seconds
+        setInterval(() => {
+            images[currentImage].classList.remove('active');
+            currentImage = (currentImage + 1) % images.length;
+            images[currentImage].classList.add('active');
+        }, 5000);
+        
+        // Only prevent default for same-page anchor links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // Only prevent default for anchor links (starting with #)
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                // For all other links (to other pages), let them work normally
+            });
+        });
+        
+        // Animation for category headings
+        const categoryHeadings = document.querySelectorAll('.category h5');
+        categoryHeadings.forEach(heading => {
+            heading.addEventListener('mouseenter', () => {
+                heading.style.animation = 'pulse 1s infinite';
+            });
+            heading.addEventListener('mouseleave', () => {
+                heading.style.animation = '';
+            });
+        });
+    });
+
+
+
+
+    </script>
+</body>
+</html>

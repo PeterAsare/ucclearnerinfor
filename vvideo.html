@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Resources Portal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    /* Global Styles */
+    :root {
+      --primary-color: #711212; /* Deep purple */
+      --secondary-color: #ffab00; /* Amber */
+      --dark-color: #311b92; /* Dark purple */
+      --light-color: #ffc400; /* Light purple */
+      --accent-color: #00c853; /* Green */
+      --menu-bg: #2b253b; /* Purple */
+      --menu-hover: #5e35b1; /* Light purple */
+      --text-color: #212121; /* Dark gray */
+      --text-light: #ffffff; /* White */
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f5f5;
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    /* Header and Menu Styles */
+    .menubar {
+      background-color: var(--menu-bg);
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .menubar ul {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      justify-content: center;
+    }
+    
+    .menubar ul li {
+      position: relative;
+      width: auto;
+      margin: 0;
+    }
+    
+    .menubar ul li a {
+      color: var(--text-light);
+      text-decoration: none;
+      padding: 15px 20px;
+      display: block;
+      transition: var(--transition);
+      font-size: 16px;
+      font-weight: 500;
+    }
+    
+    .menubar ul li a:hover {
+      background-color: var(--menu-hover);
+      color: var(--secondary-color);
+    }
+    
+    .menubar ul li a i {
+      margin-right: 8px;
+    }
+    
+    /* Dropdown Menu Styles */
+    .sub_menu1 {
+      position: absolute;
+      background-color: var(--light-color);
+      width: 200px;
+      left: 0;
+      top: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-radius: 0 0 5px 5px;
+      transform: translateY(10px);
+      z-index: 999;
+    }
+    
+    .menubar ul li:hover .sub_menu1 {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .sub_menu1 ul li {
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .sub_menu1 ul li:last-child {
+      border-bottom: none;
+    }
+    
+    .sub_menu1 ul li a {
+      color: var(--text-color);
+      padding: 12px 15px;
+      font-size: 14px;
+    }
+    
+    .sub_menu1 ul li a:hover {
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      padding-left: 20px;
+    }
+    
+    .sub_menu2 {
+      position: absolute;
+      left: 100%;
+      top: 0;
+      width: 200px;
+      background-color: var(--light-color);
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15);
+      border-radius: 0 5px 5px 5px;
+      transform: translateX(10px);
+    }
+    
+    .hoverme:hover .sub_menu2 {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+    
+    .sub_menu2 ul li {
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .sub_menu2 ul li:last-child {
+      border-bottom: none;
+    }
+    
+    .sub_menu2 ul li a {
+      color: var(--text-color);
+      padding: 10px 15px;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .sub_menu2 ul li a:hover {
+      background-color: var(--accent-color);
+      color: var(--text-light);
+    }
+    
+    /* Search Bar Styles */
+    .search {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    
+    .input_container {
+      position: relative;
+      display: flex;
+    }
+    
+    .input_container input {
+      width: 100%;
+      padding: 12px 20px;
+      border: 2px solid var(--primary-color);
+      border-radius: 30px;
+      font-size: 16px;
+      outline: none;
+      transition: var(--transition);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .input_container input:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 2px 15px rgba(0, 200, 83, 0.3);
+    }
+    
+    .input_container button {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .input_container button:hover {
+      background-color: var(--accent-color);
+      transform: scale(1.05);
+    }
+    
+    /* Footer as Last Menu Item */
+    .footer-menu {
+      background-color: var(--dark-color);
+      color: var(--text-light);
+      padding: 20px;
+      display: none;
+      position: absolute;
+      width: 300px;
+      right: 0;
+      box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+      border-radius: 5px 0 0 5px;
+      z-index: 1001;
+    }
+    
+    .footer-menu.active {
+      display: block;
+      animation: slideInRight 0.3s ease-out;
+    }
+    
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .footer-section {
+      flex: 1;
+      min-width: 120px;
+    }
+    
+    .footer-section h3 {
+      color: var(--secondary-color);
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section li {
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    
+    .footer-section a {
+      color: var(--text-light);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer-section a:hover {
+      color: var(--secondary-color);
+      padding-left: 5px;
+    }
+    
+    /* Image Animations */
+    .edu-image {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 30px auto;
+      border-radius: 8px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      transform: perspective(1000px) rotateX(10deg);
+      transition: var(--transition);
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .edu-image:hover {
+      transform: perspective(1000px) rotateX(0deg) scale(1.03);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes slideInRight {
+      from { transform: translateX(100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .menubar ul li {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    .search {
+      animation: slideIn 0.7s ease forwards;
+    }
+    
+    /* Download Progress Styles */
+    .download-progress {
+      display: none;
+      width: 100%;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      margin-top: 5px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      width: 0%;
+      height: 20px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      text-align: center;
+      line-height: 20px;
+      color: white;
+      font-size: 12px;
+      transition: width 0.3s ease;
+    }
+    
+    .fa-download {
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--dark-color);
+    }
+    
+    .fa-download:hover {
+      color: var(--accent-color) !important;
+      transform: scale(1.2);
+    }
+    
+    .highlight {
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      font-weight: bold;
+      padding: 2px;
+      border-radius: 3px;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .menubar ul {
+        flex-direction: column;
+      }
+      
+      .menubar ul li {
+        width: 100%;
+      }
+      
+      .sub_menu1 {
+        position: static;
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        transform: none;
+        box-shadow: none;
+        border-radius: 0;
+      }
+      
+      .menubar ul li:hover .sub_menu1 {
+        display: block;
+        transform: none;
+      }
+      
+      .sub_menu2 {
+        position: static;
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        transform: none;
+        box-shadow: none;
+      }
+      
+      .hoverme:hover .sub_menu2 {
+        display: block;
+        transform: none;
+      }
+      
+      .footer-menu {
+        width: 100%;
+        right: auto;
+        left: 0;
+        border-radius: 0;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .menubar ul li a {
+        padding: 12px 15px;
+        font-size: 14px;
+      }
+      
+      .search {
+        margin: 20px auto;
+      }
+      
+      .input_container input {
+        padding: 10px 15px;
+        font-size: 14px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .menubar ul li a {
+        padding: 10px 12px;
+      }
+      
+      .input_container button {
+        width: 35px;
+        height: 35px;
+        top: 3px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menubar">
+    <ul>
+      <li><img src="IMG-20241224-WA0007.jpg" alt="" height="60px" width="60px"></li>
+      <li><a href="peter.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+      <li><a href=""><i class="fa fa-calculator" aria-hidden="true"></i>MAT BSC</a>
+        <div class="sub_menu1" id="main_container">
+          <ul>
+            <li class="hoverme"><a href="#">MAT101<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+              <div class="sub_menu2" id="product_list">
+                <ul>
+                  <li><a href="#" class="download-link" data-file="MAT101-slides">slides<i class="fas fa-download" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="download-link" data-file="MAT101-pasco">pasco<i class="fas fa-download" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="download-link" data-file="MAT101-Description">Description<i class="fas fa-download" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="download-link" data-file="MAT101-Assignment">Assignment<i class="fas fa-download" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="hoverme"><a href="#">MAT201<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+              <div class="sub_menu2">
+                <ul>
+                  <li><a href="#" class="download-link" data-file="MAT201-slides">slides<i class="fas fa-download" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="download-link" data-file="MAT201-pasco">pasco<i class="fas fa-download" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="download-link" data-file="MAT201-Description">Description<i class="fas fa-download" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="download-link" data-file="MAT201-Assignment">Assignment<i class="fas fa-download" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li><a href=""><i class="fa fa-map" aria-hidden="true"></i>Geography</a>
+        <div class="sub_menu1">
+          <ul>
+            <li class="hoverme"><a href="#">Element of Physical Geography<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+              <div class="sub_menu2">
+                <ul>
+                  <li><a href="#" class="download-link" data-file="Element-of-Phyical-Ggeography-slides">slides<i class="fas fa-download" aria-hidden="true"></i></a></li>
+                  <li><a href="#" class="download-link" data-file="Element-of-Phyical-Ggeography-PastQuestion">Past Question<i class="fas fa-download" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li><a href=""><i class="fa fa-atom" aria-hidden="true"></i>Physics</a>
+        <div class="sub_menu1">
+          <ul>
+            <li class="hoverme"><a href="#">Introduction to physics</a>
+              <div class="sub_menu2">
+                <ul>
+                  <li><a href="#" class="download-link" data-file="Introduction-to-physics-slides">slides<i class="fas fa-download" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li><a href=""><i class="fa fa-flask" aria-hidden="true"></i>Chemistry</a>
+        <div class="sub_menu1">
+          <ul>
+            <li class="hoverme"><a href="#">Organic Chemistry</a>
+              <div class="sub_menu2">
+                <ul>
+                  <li><a href="#" class="download-link" data-file="asare-slides">slides<i class="fas fa-download" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li><a href=""><i class="fa fa-info-circle" aria-hidden="true"></i>About</a>
+        <div class="footer-menu">
+          <div class="footer-container">
+            <div class="footer-section">
+              <h3>About Us</h3>
+              <ul>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Download</a></li>
+                <li><a href="#">Mathematics</a></li>
+                <li><a href="#">Science</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h3>Contact</h3>
+              <ul>
+                <li><a href="#"><i class="fa fa-phone"></i> +233599171020</a></li>
+                <li><a href="#"><i class="fa fa-envelope"></i> asarepeter127@gmail.com</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> UCC, Ghana</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h3>Social Media</h3>
+              <ul>
+                <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+              </ul>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 20px; color: var(--secondary-color);">
+            <p>&copy; 2025 Academic Resources Portal</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="search">
+    <div class="input_container">
+      <input type="text" id="search_item" autocomplete="off" placeholder="Search your courses here" onkeyup="search()">
+      <button><i class="fa fa-search" aria-hidden="true"></i></button>
+    </div>    
+  </div>
+
+  <!-- Educational Image with Animation -->
+  <img src="new ucc image.jpg" 
+       alt="Education" class="edu-image">
+
+  <script>
+    // PDF documents from various university websites and public sources
+    const documentFiles = {
+      // MAT101 documents
+      'MAT101-slides': 'https://www.math.cuhk.edu.hk/course_builder/1516/math1010/MAT1010.pdf',
+      'MAT101-pasco': 'https://www.math.utah.edu/undergraduate/math1010/math1010_previous_exams/math1010_test1_sample.pdf',
+      'MAT101-Description': 'https://math.berkeley.edu/~nadler/101f18/101syllabus.pdf',
+      'MAT101-Assignment': 'https://www.math.ubc.ca/~CLP/CLP1/clp_1_ic/problems_full.pdf',
+      
+      // MAT201 documents
+      'MAT201-slides': 'https://people.math.harvard.edu/~knill/teaching/math21a2020/math21a2020.pdf',
+      'MAT201-pasco': 'https://math.mit.edu/~rbm/18-01-F18/18-01-f18-prac1sol.pdf',
+      'MAT201-Description': 'https://math.berkeley.edu/~nadler/201f18/201syllabus.pdf',
+      'MAT201-Assignment': 'https://www.math.ubc.ca/~CLP/CLP2/clp_2_ic/problems_full.pdf',
+      
+      // Geography documents
+      'Element-of-Phyical-Ggeography-slides': 'https://www.eolss.net/sample-chapters/c01/e6-05-01-03.pdf',
+      'Element-of-Phyical-Ggeography-PastQuestion': 'https://www.acegeography.com/uploads/2/5/6/0/25600632/physical_geography_revision_booklet.pdf',
+      
+      // Physics documents
+      'Introduction-to-physics-slides': 'https://www.physics.umd.edu/courses/Phys106/ji/lectures/lecture1.pdf',
+      
+      // Chemistry documents
+      'asare-slides': 'https://web.uvic.ca/~jalexndr/chem101_notes.pdf'
+    };
+
+    // Function to simulate download with progress bar
+    function simulateDownload(event, linkId) {
+      event.preventDefault();
+      
+      const downloadLink = event.currentTarget;
+      const listItem = downloadLink.closest('li');
+      
+      // Create progress container if it doesn't exist
+      let progressContainer = listItem.querySelector('.download-progress');
+      if (!progressContainer) {
+        progressContainer = document.createElement('div');
+        progressContainer.className = 'download-progress';
+        
+        const progressBar = document.createElement('div');
+        progressBar.className = 'progress-bar';
+        progressContainer.appendChild(progressBar);
+        
+        listItem.appendChild(progressContainer);
+      }
+      
+      progressContainer.style.display = 'block';
+      const progressBar = progressContainer.querySelector('.progress-bar');
+      
+      // Reset progress bar
+      progressBar.style.width = '0%';
+      progressBar.textContent = '0%';
+      progressBar.style.backgroundColor = '#6a1b9a';
+      
+      // Simulate download progress
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 10;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          
+          // Trigger actual download after progress completes
+          setTimeout(() => {
+            const fileUrl = documentFiles[linkId];
+            if (fileUrl) {
+              // Create a temporary anchor element to trigger download
+              const link = document.createElement('a');
+              link.href = fileUrl;
+              link.target = '_blank'; // Open in new tab
+              link.download = linkId + '.pdf'; // Set filename for download
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              
+              // Update progress bar to show completion
+              progressBar.textContent = 'Download Complete!';
+              progressBar.style.backgroundColor = '#00c853';
+            } else {
+              // File not found in our database
+              progressBar.textContent = 'File not available';
+              progressBar.style.backgroundColor = '#e53935';
+            }
+            
+            // Hide progress bar after delay
+            setTimeout(() => {
+              progressContainer.style.display = 'none';
+            }, 2000);
+          }, 500);
+        }
+        progressBar.style.width = progress + '%';
+        progressBar.textContent = Math.round(progress) + '%';
+      }, 100);
+    }
+
+    // Initialize download links when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      const downloadLinks = document.querySelectorAll('.download-link');
+      
+      downloadLinks.forEach(link => {
+        const fileId = link.getAttribute('data-file');
+        
+        // Add click event to each download link
+        link.addEventListener('click', (event) => {
+          simulateDownload(event, fileId);
+        });
+        
+        // Also make the download icon clickable
+        const downloadIcon = link.querySelector('.fa-download');
+        if (downloadIcon) {
+          downloadIcon.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent triggering the link click twice
+            simulateDownload(event, fileId);
+          });
+        }
+      });
+
+      // Footer menu toggle
+      const aboutMenu = document.querySelector('.menubar ul li:last-child');
+      const footerMenu = document.querySelector('.footer-menu');
+      
+      aboutMenu.addEventListener('mouseenter', () => {
+        footerMenu.classList.add('active');
+      });
+      
+      aboutMenu.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+          if (!footerMenu.matches(':hover')) {
+            footerMenu.classList.remove('active');
+          }
+        }, 200);
+      });
+      
+      footerMenu.addEventListener('mouseleave', () => {
+        footerMenu.classList.remove('active');
+      });
+    });
+
+    // Search function
+    function search() {
+      let input = document.getElementById('search_item').value.toLowerCase();
+      let menuItems = document.querySelectorAll('.menubar li a');
+      let foundMatch = false;
+      
+      menuItems.forEach(item => {
+        let text = item.textContent.toLowerCase();
+        let parentLi = item.parentElement;
+        
+        if (text.includes(input)) {
+          parentLi.style.display = 'block';
+          foundMatch = true;
+          
+          // Highlight matching text
+          let regex = new RegExp(input, 'gi');
+          item.innerHTML = item.textContent.replace(regex, match => `<span class="highlight">${match}</span>`);
+          
+          // Ensure parent menus are visible
+          let parentMenu = parentLi.closest('.sub_menu1, .sub_menu2');
+          if (parentMenu) {
+            parentMenu.style.display = 'block';
+            let parentLi = parentMenu.closest('li');
+            if (parentLi) {
+              parentLi.style.display = 'block';
+            }
+          }
+        } else {
+          // Only hide if it's a top-level item
+          if (!parentLi.querySelector('.sub_menu1') && !parentLi.querySelector('.sub_menu2')) {
+            parentLi.style.display = 'none';
+          }
+        }
+      });
+      
+      if (!foundMatch && input.length > 0) {
+        console.log("No matches found");
+      } else if (input.length === 0) {
+        // Reset all items to visible
+        menuItems.forEach(item => {
+          item.parentElement.style.display = 'block';
+          item.innerHTML = item.textContent;
+        });
+      }
+    }
+
+    // Add event listener for Enter key in search
+    document.getElementById('search_item').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        search();
+      }
+    });
+
+
+
+
+
+// Replace the existing search() function with this version
+function search() {
+  const input = document.getElementById('search_item').value.trim();
+  
+  if (input.length < 3) {
+    // Don't search for very short queries
+    return;
+  }
+
+  // Show loading indicator
+  const searchButton = document.querySelector('.input_container button');
+  searchButton.innerHTML = '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>';
+  
+  // Display search results container
+  const resultsContainer = document.createElement('div');
+  resultsContainer.id = 'search-results';
+  resultsContainer.style.cssText = `
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+  `;
+  
+  // Remove previous results if any
+  const existingResults = document.getElementById('search-results');
+  if (existingResults) {
+    existingResults.remove();
+  }
+  
+  // Add results container after search box
+  document.querySelector('.search').insertAdjacentElement('afterend', resultsContainer);
+  
+  // Create loading message
+  resultsContainer.innerHTML = `
+    <div style="text-align: center; padding: 20px;">
+      <i class="fa fa-spinner fa-spin" style="font-size: 24px; color: var(--primary-color);"></i>
+      <p>Searching Ghanaian educational websites for "${input}"...</p>
+    </div>
+  `;
+  
+  // List of Ghanaian educational website domains to search
+  const ghanaEduDomains = [
+    'site:ug.edu.gh',
+    'site:knust.edu.gh',
+    'site:ucc.edu.gh',
+    'site:uew.edu.gh',
+    'site:gimpa.edu.gh',
+    'site:umat.edu.gh',
+    'site:central.edu.gh',
+    'site:ttu.edu.gh',
+    'site:wiuc-ghana.edu.gh',
+    'site:gtuc.edu.gh',
+    'site:presbyuniversity.edu.gh',
+    'site:upsa.edu.gh',
+    'site:umat.edu.gh',
+    'site:ktu.edu.gh',
+    'site:stu.edu.gh',
+    'site:uds.edu.gh'
+  ];
+  
+  // Create Google search URLs for each domain
+  const googleSearchUrls = ghanaEduDomains.map(domain => {
+    return `https://www.google.com/search?q=${encodeURIComponent(input)}+${domain}`;
+  });
+  
+  // Function to create iframe search for each university
+  const createWebSearchFrame = (url, universityName) => {
+    return `
+      <div class="university-result">
+        <h3>${universityName}</h3>
+        <div class="google-search-preview">
+          <p>Loading results from ${universityName}...</p>
+          <a href="${url}" target="_blank" style="display: inline-block; margin-top: 10px;">
+            <i class="fas fa-external-link-alt"></i> Open full Google search results
+          </a>
+        </div>
+      </div>
+    `;
+  };
+  
+  // Process each university
+  let resultsHTML = `
+    <h2 style="color: var(--primary-color); margin-bottom: 20px;">
+      <i class="fas fa-search"></i> Search Results for "${input}"
+    </h2>
+    <div class="search-summary">
+      Searching across ${ghanaEduDomains.length} Ghanaian educational institutions
+    </div>
+  `;
+  
+  // Add a section for general Ghana education search
+  resultsHTML += `
+    <div class="university-result">
+      <h3><i class="fas fa-graduation-cap"></i> All Ghanaian Educational Resources</h3>
+      <div class="google-search-preview">
+        <iframe 
+          src="https://www.google.com/search?q=${encodeURIComponent(input)}+site:.edu.gh" 
+          style="width: 100%; height: 400px; border: 1px solid #ddd; border-radius: 4px;"
+          title="Ghana Education Search Results"
+          loading="lazy"
+        ></iframe>
+        <a href="https://www.google.com/search?q=${encodeURIComponent(input)}+site:.edu.gh" 
+           target="_blank" 
+           class="full-results-link">
+          <i class="fas fa-external-link-alt"></i> View all Ghanaian education results on Google
+        </a>
+      </div>
+    </div>
+  `;
+  
+  // Add individual university searches (limited to 5 for performance)
+  const topUniversities = [
+    { name: 'University of Ghana', domain: 'site:ug.edu.gh' },
+    { name: 'KNUST', domain: 'site:knust.edu.gh' },
+    { name: 'University of Cape Coast', domain: 'site:ucc.edu.gh' },
+    { name: 'University of Education, Winneba', domain: 'site:uew.edu.gh' },
+    { name: 'GIMPA', domain: 'site:gimpa.edu.gh' }
+  ];
+  
+  topUniversities.forEach(uni => {
+    const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(input)}+${uni.domain}`;
+    resultsHTML += createWebSearchFrame(searchUrl, uni.name);
+  });
+  
+  // Add a link to view more institutions
+  resultsHTML += `
+    <div class="more-institutions">
+      <a href="https://www.google.com/search?q=${encodeURIComponent(input)}+${ghanaEduDomains.join('+OR+')}" 
+         target="_blank">
+        <i class="fas fa-university"></i> Search across all Ghanaian universities
+      </a>
+    </div>
+  `;
+  
+  resultsContainer.innerHTML = resultsHTML;
+  
+  // Reset search button
+  searchButton.innerHTML = '<i class="fa fa-search" aria-hidden="true"></i>';
+  
+  // Add CSS for results
+  const resultStyles = document.createElement('style');
+  resultStyles.textContent = `
+    #search-results {
+      animation: slideIn 0.5s ease forwards;
+    }
+    
+    .search-summary {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .university-result {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .university-result:last-child {
+      border-bottom: none;
+    }
+    
+    .university-result h3 {
+      color: var(--dark-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .google-search-preview {
+      position: relative;
+    }
+    
+    .google-search-preview iframe {
+      width: 100%;
+      height: 400px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: white;
+    }
+    
+    .full-results-link, .more-institutions a {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .full-results-link:hover, .more-institutions a:hover {
+      color: var(--accent-color);
+      text-decoration: underline;
+    }
+    
+    .more-institutions {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    
+    .more-institutions a {
+      background: var(--primary-color);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+    }
+    
+    .more-institutions a:hover {
+      background: var(--accent-color);
+      color: white;
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+      .google-search-preview iframe {
+        height: 300px;
+      }
+      
+      .university-result h3 {
+        font-size: 18px;
+      }
+    }
+  `;
+  document.head.appendChild(resultStyles);
+}
+
+// Add event listener for the search button
+document.querySelector('.input_container button').addEventListener('click', search);
+
+// Also trigger search on Enter key
+document.getElementById('search_item').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    search();
+  }
+});
+
+
+
+
+
+
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+</body>
+</html>

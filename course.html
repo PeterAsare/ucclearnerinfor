@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics Courses - UCC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0056b3; /* UCC Blue */
+            --secondary-color: #ffc107; /* Gold */
+            --dark-color: #343a40;
+            --light-color: #f8f9fa;
+            --accent-color: #28a745;
+            --text-color: #212529;
+            --text-light: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin-bottom: 10px;
+        }
+
+        /* Search Form */
+        .search-form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .search-form input {
+            padding: 10px 15px;
+            width: 60%;
+            max-width: 500px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-form button {
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            border: none;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .search-form button:hover {
+            background-color: #e0a800;
+        }
+
+        /* Programs Section */
+        .programs-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        /* Courses Grid */
+        .courses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .course-image {
+            height: 140px;
+            overflow: hidden;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .course-card:hover .course-image img {
+            transform: scale(1.05);
+        }
+
+        .course-content {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-title {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .course-description {
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 0.9rem;
+            flex-grow: 1;
+        }
+
+        .course-list {
+            list-style-type: none;
+            margin-bottom: 15px;
+        }
+
+        .course-list li {
+            padding: 5px 0;
+            font-size: 0.85rem;
+        }
+
+        .course-list li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .course-list li a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        .course-list li a i {
+            margin-right: 5px;
+            font-size: 0.8rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: auto;
+        }
+
+        .btn-primary:hover {
+            background-color: #004494;
+        }
+
+        /* Additional Programs */
+        .additional-programs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .program-title {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .program-description {
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .courses-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .search-form {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .search-form input {
+                width: 100%;
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+            
+            .search-form button {
+                width: 100%;
+                border-radius: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .courses-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .additional-programs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Mathematics Programs</h1>
+            <p>University of Cape Coast Department of Mathematics</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <form class="search-form">
+            <input type="text" placeholder="Search courses..." id="searchInput">
+            <button type="submit"><i class="fas fa-search"></i> Search</button>
+        </form>
+
+        <section class="programs-section">
+            <h2 class="section-title">Bachelor of Science (BSc) in Mathematics</h2>
+            <div class="courses-container" id="bsc-courses">
+                <!-- BSC Courses will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <section class="programs-section">
+            <h2 class="section-title">Bachelor of Education (BEd) in Mathematics</h2>
+            <div class="courses-container" id="bed-courses">
+                <!-- BED Courses will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <section class="programs-section">
+            <h2 class="section-title">Other Mathematics Programs</h2>
+            <div class="additional-programs">
+                <div class="program-card">
+                    <h3 class="program-title">MSc Mathematics</h3>
+                    <p class="program-description">Advanced graduate program focusing on pure and applied mathematics research.</p>
+                    <a href="#" class="btn btn-primary">View Program</a>
+                </div>
+                <div class="program-card">
+                    <h3 class="program-title">MPhil Mathematics</h3>
+                    <p class="program-description">Research-intensive program preparing students for doctoral studies.</p>
+                    <a href="#" class="btn btn-primary">View Program</a>
+                </div>
+                <div class="program-card">
+                    <h3 class="program-title">PhD Mathematics</h3>
+                    <p class="program-description">Doctoral program for advanced mathematical research and scholarship.</p>
+                    <a href="#" class="btn btn-primary">View Program</a>
+                </div>
+                <div class="program-card">
+                    <h3 class="program-title">Mathematics Minor</h3>
+                    <p class="program-description">Complementary program for students majoring in other disciplines.</p>
+                    <a href="#" class="btn btn-primary">View Program</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Course Data
+        const courses = [
+            {
+                id: "level100-bsc",
+                title: "Level 100 BSc Mathematics",
+                program: "bsc",
+                image: "IMG-20241231-WA0084.jpg",
+                description: "First year foundational courses in mathematics and related disciplines.",
+                courses: [
+                    { name: "Calculus I", link: "https://www.google.com/search?q=Calculus+I+course+UCC" },
+                    { name: "Algebra", link: "https://www.google.com/search?q=Algebra+course+UCC" },
+                    { name: "Statistics", link: "https://www.google.com/search?q=Statistics+course+UCC" },
+                    { name: "Geometry", link: "https://www.google.com/search?q=Geometry+course+UCC" },
+                    { name: "Computer Programming", link: "https://www.google.com/search?q=Computer+Programming+for+mathematics+UCC" }
+                ]
+            },
+            {
+                id: "level200-bsc",
+                title: "Level 200 BSc Mathematics",
+                program: "bsc",
+                image: "IMG-20241212-WA0019.jpg",
+                description: "Second year courses building on foundational mathematical concepts.",
+                courses: [
+                    { name: "Calculus II", link: "https://www.google.com/search?q=Calculus+II+course+UCC" },
+                    { name: "Linear Algebra", link: "https://www.google.com/search?q=Linear+Algebra+course+UCC" },
+                    { name: "Probability Theory", link: "https://www.google.com/search?q=Probability+Theory+course+UCC" },
+                    { name: "Differential Equations", link: "https://www.google.com/search?q=Differential+Equations+course+UCC" },
+                    { name: "Discrete Mathematics", link: "https://www.google.com/search?q=Discrete+Mathematics+course+UCC" }
+                ]
+            },
+            {
+                id: "level300-bsc",
+                title: "Level 300 BSc Mathematics",
+                program: "bsc",
+                image: "IMG-20241212-WA0013.jpg",
+                description: "Third year specialized courses with research components.",
+                courses: [
+                    { name: "Real Analysis", link: "https://www.google.com/search?q=Real+Analysis+course+UCC" },
+                    { name: "Abstract Algebra", link: "https://www.google.com/search?q=Abstract+Algebra+course+UCC" },
+                    { name: "Numerical Analysis", link: "https://www.google.com/search?q=Numerical+Analysis+course+UCC" },
+                    { name: "Complex Variables", link: "https://www.google.com/search?q=Complex+Variables+course+UCC" },
+                    { name: "Mathematical Modeling", link: "https://www.google.com/search?q=Mathematical+Modeling+course+UCC" }
+                ]
+            },
+            {
+                id: "level400-bsc",
+                title: "Level 400 BSc Mathematics",
+                program: "bsc",
+                image: "IMG-20241212-WA0013.jpg",
+                description: "Final year advanced topics and research projects.",
+                courses: [
+                    { name: "Topology", link: "https://www.google.com/search?q=Topology+course+UCC" },
+                    { name: "Functional Analysis", link: "https://www.google.com/search?q=Functional+Analysis+course+UCC" },
+                    { name: "Number Theory", link: "https://www.google.com/search?q=Number+Theory+course+UCC" },
+                    { name: "Research Methods", link: "https://www.google.com/search?q=Mathematics+Research+Methods+UCC" },
+                    { name: "Thesis Project", link: "https://www.google.com/search?q=Mathematics+Thesis+UCC" }
+                ]
+            },
+            {
+                id: "level100-bed",
+                title: "Level 100 BEd Mathematics",
+                program: "bed",
+                image: "IMG-20241216-WA0018.jpg",
+                description: "First year combining math fundamentals with education courses.",
+                courses: [
+                    { name: "Communication Skills", link: "https://www.google.com/search?q=Communication+Skills+course+UCC" },
+                    { name: "Philosophy in Education", link: "https://www.google.com/search?q=Philosophy+in+Education+course+UCC" },
+                    { name: "Ghanaian Sign Language", link: "https://www.google.com/search?q=Ghanaian+Sign+Language+course+UCC" },
+                    { name: "Algebra & Trigonometry", link: "https://www.google.com/search?q=Algebra+Trigonometry+course+UCC" },
+                    { name: "Introduction to Teaching", link: "https://www.google.com/search?q=Introduction+to+Teaching+course+UCC" }
+                ]
+            },
+            {
+                id: "level200-bed",
+                title: "Level 200 BEd Mathematics",
+                program: "bed",
+                image: "IMG-20241212-WA0013.jpg",
+                description: "Second year advanced math with teaching methodologies.",
+                courses: [
+                    { name: "Educational Psychology", link: "https://www.google.com/search?q=Educational+Psychology+course+UCC" },
+                    { name: "Curriculum Development", link: "https://www.google.com/search?q=Curriculum+Development+course+UCC" },
+                    { name: "Advanced Algebra", link: "https://www.google.com/search?q=Advanced+Algebra+course+UCC" },
+                    { name: "Geometry for Teachers", link: "https://www.google.com/search?q=Geometry+for+Teachers+course+UCC" },
+                    { name: "Classroom Management", link: "https://www.google.com/search?q=Classroom+Management+course+UCC" }
+                ]
+            },
+            {
+                id: "level300-bed",
+                title: "Level 300 BEd Mathematics",
+                program: "bed",
+                image: "IMG-20241223-WA0037.jpg",
+                description: "Third year focusing on secondary school teaching methods.",
+                courses: [
+                    { name: "Assessment in Mathematics", link: "https://www.google.com/search?q=Assessment+in+Mathematics+course+UCC" },
+                    { name: "Teaching Strategies", link: "https://www.google.com/search?q=Mathematics+Teaching+Strategies+course+UCC" },
+                    { name: "History of Mathematics", link: "https://www.google.com/search?q=History+of+Mathematics+course+UCC" },
+                    { name: "Probability & Statistics", link: "https://www.google.com/search?q=Probability+Statistics+course+UCC" },
+                    { name: "Teaching Practicum", link: "https://www.google.com/search?q=Teaching+Practicum+UCC" }
+                ]
+            },
+            {
+                id: "level400-bed",
+                title: "Level 400 BEd Mathematics",
+                program: "bed",
+                image: "IMG-20231221-WA0054~2.jpg",
+                description: "Final year preparing for teaching careers with practical experience.",
+                courses: [
+                    { name: "Advanced Teaching Methods", link: "https://www.google.com/search?q=Advanced+Teaching+Methods+course+UCC" },
+                    { name: "Educational Research", link: "https://www.google.com/search?q=Educational+Research+course+UCC" },
+                    { name: "Mathematics Curriculum", link: "https://www.google.com/search?q=Mathematics+Curriculum+UCC" },
+                    { name: "Special Needs Education", link: "https://www.google.com/search?q=Special+Needs+Education+course+UCC" },
+                    { name: "Internship", link: "https://www.google.com/search?q=Teaching+Internship+UCC" }
+                ]
+            }
+        ];
+
+        // DOM Elements
+        const bscContainer = document.getElementById('bsc-courses');
+        const bedContainer = document.getElementById('bed-courses');
+        const searchInput = document.getElementById('searchInput');
+
+        // Display Courses
+        function displayCourses() {
+            bscContainer.innerHTML = '';
+            bedContainer.innerHTML = '';
+            
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            courses.forEach(course => {
+                if (course.title.toLowerCase().includes(searchTerm) || 
+                    course.description.toLowerCase().includes(searchTerm) || 
+                    course.courses.some(c => c.name.toLowerCase().includes(searchTerm))) {
+                    
+                    const courseCard = document.createElement('div');
+                    courseCard.className = 'course-card';
+                    courseCard.innerHTML = `
+                        <div class="course-image">
+                            <img src="${course.image}" alt="${course.title}">
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">${course.title}</h3>
+                            <p class="course-description">${course.description}</p>
+                            <ul class="course-list">
+                                ${course.courses.map(c => `
+                                    <li>
+                                        <a href="${c.link}" target="_blank">
+                                            <i class="fas fa-external-link-alt"></i> ${c.name}
+                                        </a>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                            <a href="https://www.google.com/search?q=${encodeURIComponent(course.title + ' University of Cape Coast')}" 
+                               target="_blank" class="btn btn-primary">
+                                More About This Program
+                            </a>
+                        </div>
+                    `;
+                    
+                    if (course.program === 'bsc') {
+                        bscContainer.appendChild(courseCard);
+                    } else {
+                        bedContainer.appendChild(courseCard);
+                    }
+                }
+            });
+        }
+
+        // Search Functionality
+        searchInput.addEventListener('input', displayCourses);
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', displayCourses);
+    </script>
+</body>
+</html>
